@@ -24,11 +24,6 @@ public class Script_Credit : MonoBehaviour
         RollingTexts();
     }
 
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
     void RollingTexts()
     {
         texts.transform.Translate(0, 60 * Time.deltaTime, 0);

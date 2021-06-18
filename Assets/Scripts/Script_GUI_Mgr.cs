@@ -92,105 +92,104 @@ public class Script_GUI_Mgr : MonoBehaviour
         {
             // Make a background box
             GUI.Box(mainRect, "Menu");
-        if (mainRect.Contains(Event.current.mousePosition))
-            BlockedByUI = true;
-        else
-            BlockedByUI = false;
-        if (GUI.Button(new Rect((resetRect.x + 20), resetRect.y, resetRect.width - 20, 25), "Reset"))
-        {
-            if(!isPlaying)
-                isReset = true;
-        }
-
-        if(GUI.Toggle(new Rect(20, dropDownRect.y, 170, 25),isWaypointMove, "Waypoint Movement"))
-        {
-            isWaypointMove = true;
-            isGenerateModeOn = false;
-            isRemoveModeOn = false;
-        }
-        else
-            isWaypointMove = false;
-
-        if (GUI.Toggle(new Rect(20, 30, 170, 20), isGenerateModeOn, "Generate Waypoint"))
-        {
-            isGenerateModeOn = true;
-            isSettingObj = false;
-            isRemoveModeOn = false;
-        }
-        else
-            isGenerateModeOn = false;
-
-        if (GUI.Toggle(removeNodeRect, isRemoveModeOn, "Remove Waypoint"))
-        {
-            isRemoveModeOn = true;
-            isGenerateModeOn = false;
-        }
-        else
-            isRemoveModeOn = false;
-
-        if (isGenerateModeOn)
-        {
-            isWaypointMove = false;
-            isPlaying = false;
-            isReset = false;
-
-        }
-            
-        if (!isPlaying)
-        {
-            if (GUI.Button(new Rect((simulateRect.x + 20), simulateRect.y, simulateRect.width - 20, 25), "Simulate")&&
-                Script_WaypointMgr.instance.mWaypointList.Count>1)
+            if (mainRect.Contains(Event.current.mousePosition))
+                BlockedByUI = true;
+            else
+                BlockedByUI = false;
+            if (GUI.Button(new Rect((resetRect.x + 20), resetRect.y, resetRect.width - 20, 25), "Reset"))
             {
-                    isPlaying = true;
+                if (!isPlaying)
+                    isReset = true;
             }
-        }
-        else
-        {
-            if (GUI.Button(new Rect((simulateRect.x + 20), simulateRect.y, simulateRect.width - 20, 25), "Stop"))
+
+            if (GUI.Toggle(new Rect(20, dropDownRect.y, 170, 25), isWaypointMove, "Waypoint Movement"))
             {
+                isWaypointMove = true;
+                isGenerateModeOn = false;
+                isRemoveModeOn = false;
+            }
+            else
+                isWaypointMove = false;
+
+            if (GUI.Toggle(new Rect(20, 30, 170, 20), isGenerateModeOn, "Generate Waypoint"))
+            {
+                isGenerateModeOn = true;
+                isSettingObj = false;
+                isRemoveModeOn = false;
+            }
+            else
+                isGenerateModeOn = false;
+
+            if (GUI.Toggle(removeNodeRect, isRemoveModeOn, "Remove Waypoint"))
+            {
+                isRemoveModeOn = true;
+                isGenerateModeOn = false;
+            }
+            else
+                isRemoveModeOn = false;
+
+            if (isGenerateModeOn)
+            {
+                isWaypointMove = false;
                 isPlaying = false;
+                isReset = false;
+
             }
-        }
 
-        GUI.Label(new Rect(20, 130, 170, 25), "Camera Control:");
-        GUI.Label(new Rect(20, 230, 170, 25), "Camera Look at:");
-        if(GUI.Toggle(new Rect(20, 255, 170, 25), isSettingObj, "Set objects to look"))
-        {
-            isSettingObj = true;
-            isGenerateModeOn = false;
-            isRemoveModeOn = false;
-        }
-        else
-            isSettingObj = false;
+            if (!isPlaying)
+            {
+                if (GUI.Button(new Rect((simulateRect.x + 20), simulateRect.y, simulateRect.width - 20, 25), "Simulate") &&
+                    Script_WaypointMgr.instance.mWaypointList.Count > 1)
+                {
+                    isPlaying = true;
+                }
+            }
+            else
+            {
+                if (GUI.Button(new Rect((simulateRect.x + 20), simulateRect.y, simulateRect.width - 20, 25), "Stop"))
+                {
+                    isPlaying = false;
+                }
+            }
 
-        GUI.Label(nodeGenHeightRect, "Waypoint gen height:");
-        GUI.Label(new Rect(nodeGenHeightRect.x + 120, nodeGenHeightRect.y - 10, nodeGenHeightRect.width - 55, 25), nodeGenHeight.ToString());
-        nodeGenHeight = GUI.HorizontalSlider(new Rect(nodeGenHeightRect.x + 120, nodeGenHeightRect.y + 7, nodeGenHeightRect.width - 55, 25), nodeGenHeight, 0, 20);
+            GUI.Label(new Rect(20, 130, 170, 25), "Camera Control:");
+            GUI.Label(new Rect(20, 230, 170, 25), "Camera Look at:");
+            if (GUI.Toggle(new Rect(20, 255, 170, 25), isSettingObj, "Set objects to look"))
+            {
+                isSettingObj = true;
+                isGenerateModeOn = false;
+                isRemoveModeOn = false;
+            }
+            else
+                isSettingObj = false;
 
-        GUI.Label(camDistRect, "Look from distance:");
-        GUI.Label(new Rect(camDistRect.x + 120, camDistRect.y-10, camDistRect.width - 55, 25),  camLookAtDist.ToString());
-        camLookAtDist = GUI.HorizontalSlider(new Rect(camDistRect.x+120, camDistRect.y+5, camDistRect.width-55, 25), camLookAtDist, 0, 100);
+            GUI.Label(nodeGenHeightRect, "Waypoint gen height:");
+            GUI.Label(new Rect(nodeGenHeightRect.x + 120, nodeGenHeightRect.y - 10, nodeGenHeightRect.width - 55, 25), nodeGenHeight.ToString());
+            nodeGenHeight = GUI.HorizontalSlider(new Rect(nodeGenHeightRect.x + 120, nodeGenHeightRect.y + 7, nodeGenHeightRect.width - 55, 25), nodeGenHeight, 0, 20);
 
-        GUI.Label(camRotSpeedRect, "Cam steer speed:");
-        GUI.Label(new Rect(camRotSpeedRect.x + 120, camRotSpeedRect.y - 8, camRotSpeedRect.width - 55, 25), camRotSpeed.ToString());
-        camRotSpeed = GUI.HorizontalSlider(new Rect(camRotSpeedRect.x + 120, camRotSpeedRect.y + 7, camRotSpeedRect.width - 55, 25), camRotSpeed, 0, 2);
+            GUI.Label(camDistRect, "Look from distance:");
+            GUI.Label(new Rect(camDistRect.x + 120, camDistRect.y - 10, camDistRect.width - 55, 25), camLookAtDist.ToString());
+            camLookAtDist = GUI.HorizontalSlider(new Rect(camDistRect.x + 120, camDistRect.y + 5, camDistRect.width - 55, 25), camLookAtDist, 0, 100);
 
-        GUI.Label(camAvoidRect, "Avoidance distance:");
-        GUI.Label(new Rect(camAvoidRect.x + 120, camAvoidRect.y - 8, camAvoidRect.width - 55, 25), camAvoidDist.ToString());
-        camAvoidDist = GUI.HorizontalSlider(new Rect(camAvoidRect.x + 120, camAvoidRect.y + 7, camAvoidRect.width - 55, 25), camAvoidDist, 0, 20);
-        
-        GUI.Label(camRotRadRect, "Cam orbit radius:");
-        GUI.Label(new Rect(camRotRadRect.x + 120, camRotRadRect.y - 8, camRotRadRect.width - 55, 25), camRotRad.ToString());
-        camRotRad = GUI.HorizontalSlider(new Rect(camRotRadRect.x + 120, camRotRadRect.y + 7, camRotRadRect.width - 55, 25), camRotRad, 1, 15);
+            GUI.Label(camRotSpeedRect, "Cam steer speed:");
+            GUI.Label(new Rect(camRotSpeedRect.x + 120, camRotSpeedRect.y - 8, camRotSpeedRect.width - 55, 25), camRotSpeed.ToString());
+            camRotSpeed = GUI.HorizontalSlider(new Rect(camRotSpeedRect.x + 120, camRotSpeedRect.y + 7, camRotSpeedRect.width - 55, 25), camRotSpeed, 0, 2);
 
-        GUI.Label(camSpeedRect, "Cam speed:");
-        GUI.Label(new Rect(camSpeedRect.x + 120, camSpeedRect.y - 8, camSpeedRect.width - 55, 25), camSpeed.ToString());
-        camSpeed = GUI.HorizontalSlider(new Rect(camSpeedRect.x + 120, camSpeedRect.y + 7, camSpeedRect.width - 55, 25), camSpeed, 0, 2);
+            GUI.Label(camAvoidRect, "Avoidance distance:");
+            GUI.Label(new Rect(camAvoidRect.x + 120, camAvoidRect.y - 8, camAvoidRect.width - 55, 25), camAvoidDist.ToString());
+            camAvoidDist = GUI.HorizontalSlider(new Rect(camAvoidRect.x + 120, camAvoidRect.y + 7, camAvoidRect.width - 55, 25), camAvoidDist, 0, 20);
 
-        GUI.Label(camSpeedRotRect, "Orbit speed:");
-        GUI.Label(new Rect(camSpeedRotRect.x + 120, camSpeedRotRect.y - 8, camSpeedRotRect.width - 55, 25), camSpeedRot.ToString());
-        camSpeedRot = GUI.HorizontalSlider(new Rect(camSpeedRotRect.x + 120, camSpeedRotRect.y + 7, camSpeedRotRect.width - 55, 25), camSpeedRot, 0, 2);
+            GUI.Label(camRotRadRect, "Cam orbit radius:");
+            GUI.Label(new Rect(camRotRadRect.x + 120, camRotRadRect.y - 8, camRotRadRect.width - 55, 25), camRotRad.ToString());
+            camRotRad = GUI.HorizontalSlider(new Rect(camRotRadRect.x + 120, camRotRadRect.y + 7, camRotRadRect.width - 55, 25), camRotRad, 1, 15);
 
+            GUI.Label(camSpeedRect, "Cam speed:");
+            GUI.Label(new Rect(camSpeedRect.x + 120, camSpeedRect.y - 8, camSpeedRect.width - 55, 25), camSpeed.ToString());
+            camSpeed = GUI.HorizontalSlider(new Rect(camSpeedRect.x + 120, camSpeedRect.y + 7, camSpeedRect.width - 55, 25), camSpeed, 0, 2);
+
+            GUI.Label(camSpeedRotRect, "Orbit speed:");
+            GUI.Label(new Rect(camSpeedRotRect.x + 120, camSpeedRotRect.y - 8, camSpeedRotRect.width - 55, 25), camSpeedRot.ToString());
+            camSpeedRot = GUI.HorizontalSlider(new Rect(camSpeedRotRect.x + 120, camSpeedRotRect.y + 7, camSpeedRotRect.width - 55, 25), camSpeedRot, 0, 2);
 
             if (GUI.Button(new Rect((CreditRect.x + 30), CreditRect.y + 10, CreditRect.width - 20, 25), "Credit On"))
             {

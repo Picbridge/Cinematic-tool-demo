@@ -41,8 +41,8 @@ public class Script_CoreObjectsMgr : MonoBehaviour
             mRange.material = LookDistance;
             for (int i = 0;i< SEGMENT; i++)
             {
-                x = Mathf.Sin(Mathf.Deg2Rad * angle) * (Script_GUI_Mgr.instance.camLookAtDist);/// objects.transform.localScale.x;
-                z = Mathf.Cos(Mathf.Deg2Rad * angle) * (Script_GUI_Mgr.instance.camLookAtDist);/// objects.transform.localScale.z;
+                x = Mathf.Sin(Mathf.Deg2Rad * angle) * (Script_GUI_Mgr.instance.camLookAtDist)/ objects.transform.localScale.x;
+                z = Mathf.Cos(Mathf.Deg2Rad * angle) * (Script_GUI_Mgr.instance.camLookAtDist)/ objects.transform.localScale.z;
                 Vector3 rangePos = new Vector3(x, 0, z);
                 mRange.SetPosition(i, rangePos);
                 angle += (360f / SEGMENT);

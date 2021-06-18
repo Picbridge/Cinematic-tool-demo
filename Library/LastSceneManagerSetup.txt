@@ -1,5 +1,5 @@
 sceneSetups:
-- path: D:/GAM450-SneakAndPeek-Source/GAM450-SneakAndPeek-Source/Assets/Credit.unity
+- path: Assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
