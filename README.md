@@ -39,6 +39,11 @@ User can press once again to pause the simulation. Cannot be clicked while gener
 ![LookAtMenu](https://github.com/Picbridge/Cinematic-tool-demo/blob/main/GIF/LookAtMenu.gif)
 
 
+### Sources
 
+Test map 1: https://assetstore.unity.com/packages/3d/environments/landscapes/p-w-temple-edition-33637
+Statue in test map 1: https://assetstore.unity.com/packages/3d/environments/fantasy/angel-statue-27594
+
+Test map 2: https://assetstore.unity.com/packages/3d/environments/3d-free-modular-kit-85732
 
 
